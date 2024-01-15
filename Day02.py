@@ -1,11 +1,11 @@
-a = "univ"
-print(a)
-print(a[0])
-#a[0] = 'U' # immutable
-print(a)
+ABC = 1
+Abc = 2
+abc = 3
+print(ABC, Abc, abc)
 
-b = ['Python', 'C++', 'Linux', 'Datastructure', 'Database']
-print(b)
-print(b[3])
-b[3] = 'Datastructure && Algorithms' # mutable
-print(b)
+test2 = 10
+_2test = 20
+# 2test = 30  # can't start with numeric
+print(test2, _2test)
+
+# False = 5  # keywords can't be name
