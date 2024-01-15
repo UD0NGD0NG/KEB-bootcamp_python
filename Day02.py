@@ -1,11 +1,14 @@
-ABC = 1
-Abc = 2
-abc = 3
-print(ABC, Abc, abc)
+a = [10, 20, 30, 40, 50]
+b = a # 복사가 아닌 참조
+print(a, b)
+a[0] = 50
+print(a, b)
+b[0] = 100
+print(a, b)
 
-test2 = 10
-_2test = 20
-# 2test = 30  # can't start with numeric
-print(test2, _2test)
-
-# False = 5  # keywords can't be name
+money = 1,000,000 # tuple
+print(money)
+print(type(money))
+cash = 1_000_000
+print(cash)
+print(type(cash))
