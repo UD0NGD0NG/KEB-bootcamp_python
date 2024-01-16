@@ -2,6 +2,9 @@ numbers = input("Input start number finish number: ").split()
 n1 = int(numbers[0])
 n2 = int(numbers[1])
 
+if n1 > n2: # tuple packing
+    n1, n2 = n2, n1
+
 for number in range(n1, n2 + 1):
     isPrime = True
     if number < 2:
