@@ -1,16 +1,15 @@
-univ = "inha"
-i = 0
-while i < len(univ):
-    print(univ[i], end=' ')
-    i = i + 1
+numbers = input("Input start number finish number: ").split()
+n1 = int(numbers[0])
+n2 = int(numbers[1])
 
-print()
-
-for letter in univ:
-    print(letter, end=' ')
-
-print()
-
-# default range == (0, essential, 1)
-for k in range(0, len(univ), 1): # == for k in range(len(univ)):
-    print(univ[k], end=' ')
+for number in range(n1, n2 + 1):
+    isPrime = True
+    if number < 2:
+        pass
+    else:
+        for i in range(2, number):
+            if number % i == 0:
+                isPrime = False
+                break
+        if isPrime:
+            print(number, end=' ')
