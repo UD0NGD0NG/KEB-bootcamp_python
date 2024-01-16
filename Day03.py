@@ -1,14 +1,20 @@
 course = "2024 KEB Bootcamp"
+print(course.replace('KEB', 'Inha'))
 print(course)
-list_course = course.split() # default delimeter is ' '(white space)
-list_courseB = course.split('B') # set delimeter
-print(list_course)
-print(list_courseB)
+course = course.replace('KEB', 'Inha')
+print(course)
 
-numbers = input("FirstNumber SecondNumber : ").split()
-print(numbers[0] + numbers[1]) # concatenation
-print(int(numbers[0]) + int(numbers[1])) # arithmetic operation
+str = "a djs aa sf a fad"
+print(str.replace('a', 'A')) # All
+str = str.replace('a', 'A', 4) # limit
+print(str)
 
-subjects = ["Python", "C++", "Database"]
-subjects_string = '/'.join(subjects)
-print(subjects_string)
+world = "!!!!!earth!!!!!earth!!!!!"
+print(world)
+print(world.strip('!')) # default delimeter is ' '(ws)
+print(world.rstrip('!'))
+print(world.lstrip('!'))
+print(world.find('earth')) # if value is exist find == index
+print(world.rindex('earth'))
+print(world.find('?')) # if value is not exist return -1
+#print(world.index('?'))  # Error!
