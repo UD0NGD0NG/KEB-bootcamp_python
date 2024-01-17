@@ -1,24 +1,26 @@
-# shallow copy
-l1 = [1, 2, 3] # Values in list are immutable
-l2 = l1
-l3 = l1.copy()
-l4 = list(l1)
-l5 = l1[:]
-l1[1] = 20
-print(l1, l2, l3, l4, l5)
+# make dictionary method
+d1 = {}
+d2 = {'a': 'apple', 'b' : 'banana', 'c': 'cat'}
+d3 = dict(A = 'Apple', B = 'Banana', C = 'Cat')
+l = [(1, 2), (3, 4), (5, 6)] # list -> dictionary
+d4 = dict(l) # {1: 2, 3: 4, 5: 6}
+t = ([1, 10], [2, 20], [3, 30]) # tuple -> dictionary
+d5 = dict(t) # {1: 10, 2: 20, 3: 30}
+ll = ['ab', 'cd', 'ef'] # string(len == 2) list -> dictionary
+d6 = dict(ll) # {'a': 'b', 'c': 'd', 'e': 'f'}
 
-ll1 = [1, [2, 3], 4] # ll1[1] is mutable
-ll2 = ll1
-ll3 = ll1.copy()
-ll4 = list(ll1)
-ll5 = ll1[:]
-ll1[1][0] = 20
-print(ll1, ll2, ll3, ll4, ll5)
+Grades = {'Python': 'A+', 'C++': 'A+'}
+Grades['Calculus'] = 'A+' # Add
+Grades['Calculus'] = 'A0' # Edit
+print(Grades.get('Java', "Didn't take a course")) # second string is optional, default is None
 
+print(Grades.keys())
+print(Grades.values())
+print(Grades.items())
 
-# deep copy
-import copy
-lll1 = [1, [2, 3], 4]
-lll2 = copy.deepcopy(lll1) # Not change
-lll1[1][0] = 20
-print(lll1, lll2)
+# Combine
+dd1 = dict(a='apple', b='banana', c='car')
+dd2 = dict(c = 'cat', e = 'elephant')
+dd3 = {**dd1, **dd2} # If there are overlapping keys, the value of the dictionary located at the back is stored.
+dd1.update(dd2)
+print(dd1, dd3)
