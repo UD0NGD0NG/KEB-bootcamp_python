@@ -1,21 +1,20 @@
-def my_range(first=0, last=10, step=1):
-    number = first
-    while number < last:
-        yield number # remember just before
-        number += step
+def document_it(func):
+    def new_function(*args, **kwargs):
+        print("Running function:", func.__name__)
+        print("Positional arguments:", args)
+        print("Keyword arguments:", kwargs)
+        result = func(*args, **kwargs)
+        print("Result:", result)
+        return result
+    return new_function
 
-ranger = my_range(1, 5)
+def add_ints(a, b):
+    return a + b
+explain = document_it(add_ints) # manual
+explain(3, 5)
+print()
 
-for x in ranger:
-    print(x)
-
-for x in ranger: # print nothing
-    print(x)
-
-# comprehension
-gen_obj = (num for num in range(1, 5))
-for x in gen_obj:
-    print(x)
-
-for x in gen_obj: # print nothing
-    print(x)
+@document_it
+def subtract_ints(a, b):
+    return a - b
+subtract_ints(3,5) # auto (line17)
