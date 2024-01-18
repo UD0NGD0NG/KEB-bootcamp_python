@@ -1,16 +1,6 @@
-def isPrime(n):
-    if n < 2:
-        return False
-    else:
-        i = 2
-        while i * i <= n:
-            if n % i == 0:
-                return False
-            i += 1
-    return True
+#lambda value: set value code)
+z = lambda x: x ** 2  # assign address
+l = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(list(map(z, l))) # using lambda's address
 
-n1, n2 = map(int, input('Enter begin && end : ').split())
-n1, n2 = min(n1, n2), max(n1, n2)
-for number in range(n1, n2 + 1):
-    if isPrime(number):
-        print(number, end=' ')
+print(list(map(lambda y: y ** 3, l))) # using lambda
