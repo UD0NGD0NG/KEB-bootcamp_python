@@ -1,10 +1,15 @@
-def squares(n):
-    return n ** 2
-def run_function(f, number):
-    return f(number)
-print(squares(7))
-print(run_function(squares, 7))
+# Inner Func
+def Out_F(a, b):
+    def In_F(c, d):
+        return c + d
+    return In_F(a, b)
+print(Out_F(4, 5))
 
-def run__function(f, *numbers):
-    return [f(num) for num in numbers]
-print(run__function(squares, 1, 2, 3, 4, 5))
+# Closure
+def out_f(a, b):
+    def in_f(): # no parameter
+        return a + b
+    return in_f # return address
+clo = out_f(4, 5)
+print(clo) # address
+print(clo()) # run in_f(a, b)
