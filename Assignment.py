@@ -1,37 +1,38 @@
 #1
-e2f = dict(dog='chien', cat='chat', walrus='morse')
+def good():
+    return ['Harry', 'Ron', 'Hermione']
 
 #2
-print(e2f.get('walrus'))
+def get_odds():
+    number = 1
+    while number < 10:
+        yield number
+        number += 2
+idx = 1
+for num in get_odds():
+    if idx == 3:
+        print(num)
+    idx += 1
 
 #3
-f2e = {}
-for value in e2f.items():
-    f2e[value[1]] = value[0]
+def test(func):
+    def new_test(*args, **kwargs):
+        print("start")
+        tmp = func(*args, **kwargs)
+        print("end")
+        return tmp
+    return new_test
+
+@test
+def Func():
+    print('Test')
+
+Func()
 
 #4
-for value in e2f.items():
-    if value[1] == 'chien':
-        print(value[0])
-
-#5
-print(e2f.keys())
-
-#6
-life = {
-    'animals': {'cats':'Henri', 'octopi':'Grumpy', 'emus':'Lucy'},
-    'plants': {},
-    'other': {}
-}
-
-#7
-print(life.keys())
-
-#8
-print(life['animals'].keys())
-
-#9
-print(life['animals']['cats'])
-
-#10
-squares = {key: key * key for key in range(10)}
+class OopsError(Exception):
+    pass
+try:
+    raise OopsError('Caught an oops')
+except OopsError as exc:
+    print(exc)
