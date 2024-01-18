@@ -1,15 +1,16 @@
-# Inner Func
-def Out_F(a, b):
-    def In_F(c, d):
-        return c + d
-    return In_F(a, b)
-print(Out_F(4, 5))
+def isPrime(n):
+    if n < 2:
+        return False
+    else:
+        i = 2
+        while i * i <= n:
+            if n % i == 0:
+                return False
+            i += 1
+    return True
 
-# Closure
-def out_f(a, b):
-    def in_f(): # no parameter
-        return a + b
-    return in_f # return address
-clo = out_f(4, 5)
-print(clo) # address
-print(clo()) # run in_f(a, b)
+n1, n2 = map(int, input('Enter begin && end : ').split())
+n1, n2 = min(n1, n2), max(n1, n2)
+for number in range(n1, n2 + 1):
+    if isPrime(number):
+        print(number, end=' ')
