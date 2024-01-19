@@ -1,16 +1,15 @@
-name = "Name"
+def factorial_repetition(n):
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
 
-def Unchangeable():
-    name = "UC_Name"
-    print(name, id(name))
+def factorial_recursion(n):
+    if n == 1:
+        return n
+    else:
+        return n * factorial_recursion(n - 1)
 
-def Changeable():
-    global name
-    name = "C_Name"
-    print(name, id(name))
-
-print(name, id(name))
-Unchangeable()
-print(name, id(name))
-Changeable()
-print(name, id(name))
+n = int(input("number : "))
+print(factorial_repetition(n))
+print(factorial_recursion(n))
