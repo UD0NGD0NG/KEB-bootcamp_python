@@ -54,6 +54,7 @@ class Pokemon:
 class Evolution:
     def evol(self, n):
         print(f"Congratulations!Your {self.name}\nevolved into {n}")
+        self.name = n
         self.Hp += 5
         self.Deal += 2
 
@@ -63,13 +64,13 @@ class Pikachu(Pokemon):
         super().__init__('Pikachu', 'Electric', 30, 71, 25)
 class Turtwig(Pokemon, Evolution):
     def __init__(self):
-        super().__init__('Turtwig', 'Grass', 10, 23, 9)
+        super().__init__('Turtwig', 'Grass', 10, 23, 11)
 class Chimchar(Pokemon, Evolution):
     def __init__(self):
-        super().__init__('Chimchar', 'Fire', 10, 23, 9)
+        super().__init__('Chimchar', 'Fire', 10, 23, 11)
 class Piplup(Pokemon, Evolution):
     def __init__(self):
-        super().__init__('Piplup', 'Water', 10, 23, 9)
+        super().__init__('Piplup', 'Water', 10, 23, 11)
 
 # My Func
 def isAdvanced(a, b) -> bool:
@@ -153,7 +154,7 @@ while True:
         else:
             WildLv = 100
 
-        WP = Pokemon(Wild[WildNum], w_Type[WildNum], WildLv, int(WildLv * 1.5) + 3, int(WildLv * 0.7))
+        WP = Pokemon(Wild[WildNum], w_Type[WildNum], WildLv, int(WildLv * 1.6) + 3, int(WildLv * 0.7) - 1)
         if WildNum == 9 and WildLv <= 90:
             WildLv += 5; WP.Hp += 8; WP.Deal += 10;
         print(f"Wild Pokemon {WP.name}(Lv.{WP.Lv}) is appeared!")
@@ -166,7 +167,7 @@ while True:
                 if WP.Hp <= 0:
                     reward = int(WP.Lv * 0.05) + 1
                     MyPokemon.Lv += reward
-                    MyPokemon.Hp += int(reward * 18.5) - 13
+                    MyPokemon.Hp += int(reward * 18.5) - 14
                     MyPokemon.Deal += int(reward * 0.9)
                     print(f"\n{WP.name} is dead\n{MyPokemon.name} get {reward}exp\n")
                     break
