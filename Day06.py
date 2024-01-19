@@ -1,15 +1,15 @@
-def factorial_repetition(n):
-    result = 1
-    for i in range(2, n + 1):
-        result *= i
-    return result
+import random
+numbers = [random.randint(1, 100) for i in range(10)]
 
-def factorial_recursion(n):
-    if n == 1:
-        return n
-    else:
-        return n * factorial_recursion(n - 1)
-
-n = int(input("number : "))
-print(factorial_repetition(n))
-print(factorial_recursion(n))
+try:
+    pick = int(input(f"Enter index (0 ~ {len(numbers) - 1}) : "))
+    print(numbers[pick])
+    print(5 / 0)
+except IndexError as err:
+    print(f"{err} : Wrong index number")
+except ValueError:
+    print("Enter only number")
+except ZeroDivisionError as err:
+    print(f"{err}")
+except Exception: # catch all error (must be last)
+    print("Error occurs")
