@@ -1,24 +1,23 @@
-class Animal:
-    def say(self):
-        print("I speak!")
+class FlyingMixin:
+    def fly(self):
+        return f"{self.name} is flying to sky"
 
-class Horse(Animal):
-    def say(self):
-        print("Horse speak!")
+class SwimmingMixin:
+    def swim(self):
+        return f"{self.name} is swimming to sea"
 
-class Donkey(Animal):
-    def say(self):
-        print("Donkey speak!")
+class Pokemon:
+    def __init__(self, name):
+        self.name = name
 
-class Mule(Donkey, Horse):
-     def say(self):
-         print("Mule speak!")
-
-class Hinny(Horse, Donkey): # if Horse class has say call Horse's say else if Donkey class has say call Donkey's say else call Animal's say
+class Charizard(Pokemon, FlyingMixin):
     pass
 
-mule = Mule()
-hinny = Hinny()
+class Gyarados(Pokemon, SwimmingMixin):
+    pass
 
-mule.say()
-hinny.say()
+p1 = Gyarados("Gyarados")
+p2 = Charizard("Charizard")
+
+print(p1.swim())
+print(p2.fly())
