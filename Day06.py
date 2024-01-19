@@ -1,31 +1,24 @@
-class Pokemon:
-    def __init__(self, name):
-        self.name = name
+class Animal:
+    def say(self):
+        print("I speak!")
 
-    def attack(self, target):
-        print(f"{self.name}이(가) {target.name}을(를) 공격!")
+class Horse(Animal):
+    def say(self):
+        print("Horse speak!")
 
-class Pikachu(Pokemon): # inherit(is-a)
-    def __init__(self, name, type):
-        super().__init__(name) # Delegation
-        self.type = type
+class Donkey(Animal):
+    def say(self):
+        print("Donkey speak!")
 
-    def attack(self, target):
-        print(f"{self.name}이(가) {target.name}을(를) {self.type} 공격!")
+class Mule(Donkey, Horse):
+     def say(self):
+         print("Mule speak!")
 
-    def attack_info(self):
-        print(f"{self.type} 계열의 공격을 합니다.")
-
-class Squirtle(Pokemon):
+class Hinny(Horse, Donkey): # if Horse class has say call Horse's say else if Donkey class has say call Donkey's say else call Animal's say
     pass
 
-p1 = Pikachu("피카츄", "전기")
-p2 = Squirtle("꼬부기")
-p3 = Pokemon("미싱노")
+mule = Mule()
+hinny = Hinny()
 
-print(p1.name)
-p1.attack(p2)
-p2.attack(p1)
-
-p1.attack_info()
-#p3.attack_info()  # Error, attack_info is personality
+mule.say()
+hinny.say()
