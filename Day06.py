@@ -1,23 +1,16 @@
-class FlyingMixin:
-    def fly(self):
-        return f"{self.name} is flying to sky"
-
-class SwimmingMixin:
-    def swim(self):
-        return f"{self.name} is swimming to sea"
-
 class Pokemon:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, input_name):
+        self.__name = input_name # name mangling __(variable name)
+    @property # getter
+    def name(self): # getter name
+        return self.__name
+    @name.setter # (getter name).setter
+    def name(self, new_name): # should be same as getter name
+        self.__name = new_name
 
-class Charizard(Pokemon, FlyingMixin):
-    pass
-
-class Gyarados(Pokemon, SwimmingMixin):
-    pass
-
-p1 = Gyarados("Gyarados")
-p2 = Charizard("Charizard")
-
-print(p1.swim())
-print(p2.fly())
+p1 = Pokemon("Gyarados")
+print(p1.name)
+p1.name = "Magikarp"
+print(p1.name)
+p1.__name = "Gyarados" # Nothing change
+print(p1.name)
