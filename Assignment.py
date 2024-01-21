@@ -9,54 +9,85 @@ class Clear(Exception):
 
 # Pokemon abstract class
 class Pokemon:
-    def __init__(self, name, type, Lv, Hp, Deal):
-        self.name = name
-        self.type = type
-        self.Lv = Lv
-        self.Hp = Hp
-        self.Deal = Deal
+    def __init__(self, name, type, lv, hp, deal):
+        self.__Name = name
+        self.__Type = type
+        self.__Lv = lv
+        self.__Hp = hp
+        self.__Deal = deal
+
+    @property
+    def name(self):
+        return self.__Name
+    @name.setter
+    def name(self, new_name):
+        self.__Name = new_name
+    @property
+    def type(self):
+        return self.__Type
+    @type.setter
+    def type(self, new_type):
+        self.__Type = new_type
+    @property
+    def lv(self):
+        return self.__Lv
+    @lv.setter
+    def lv(self, new_lv):
+        self.__Lv = new_lv
+    @property
+    def hp(self):
+        return self.__Hp
+    @hp.setter
+    def hp(self, new_hp):
+        self.__Hp = new_hp
+    @property
+    def deal(self):
+        return self.__Deal
+    @deal.setter
+    def deal(self, new_deal):
+        self.__Deal = new_deal
     def info(self):
-        print(f"Name: {self.name}, Type: {self.type}, Lv: {self.Lv}, Hp: {self.Hp}, Deal: {self.Deal}")
+        print(f"Name: {self.__Name}, Type: {self.__Type}, Lv: {self.__Lv}, Hp: {self.__Hp}, Deal: {self.__Deal}")
     def Attack(self, target):
-        print(f"{self.name} attack {target.name} by {self.type}type skill!")
-        if self.type == 'Electric' or self.type == 'Psychic':
+        print(f"{self.__Name} attack {target.__Name} by {self.__Type}type skill!")
+        if self.__Type == 'Electric' or self.__Type == 'Psychic' or self.__Type == 'Dragon':
             print("Super-effective!!")
-            target.Hp -= int(self.Deal * 1.2)
-        elif self.type == 'Grass':
-            if target.type == 'Water':
+            target.__Hp -= int(self.__Deal * 1.1)
+        elif self.__Type == 'Grass':
+            if target.__Type == 'Water':
                 print("Super-effective!!")
-                target.Hp -= int(self.Deal * 1.2)
-            elif target.type == 'Fire':
+                target.__Hp -= int(self.__Deal * 1.2)
+            elif target.__Type == 'Fire':
                 print("Not very effective...")
-                target.Hp -= int(self.Deal / 1.2)
+                target.__Hp -= int(self.__Deal / 1.2)
             else:
-                target.Hp -= self.Deal
-        elif self.type == 'Fire':
-            if target.type == 'Grass':
+                target.__Hp -= self.__Deal
+        elif self.__Type == 'Fire':
+            if target.__Type == 'Grass':
                 print("Super-effective!!")
-                target.Hp -= int(self.Deal * 1.2)
-            elif target.type == 'Water':
+                target.__Hp -= int(self.__Deal * 1.2)
+            elif target.__Type == 'Water':
                 print("Not very effective...")
-                target.Hp -= int(self.Deal / 1.2)
+                target.__Hp -= int(self.__Deal / 1.2)
             else:
-                target.Hp -= self.Deal
-        elif self.type == 'Water':
-            if target.type == 'Fire':
+                target.__Hp -= self.__Deal
+        elif self.__Type == 'Water':
+            if target.__Type == 'Fire':
                 print("Super-effective!!")
-                target.Hp -= int(self.Deal * 1.2)
-            elif target.type == 'Grass':
+                target.__Hp -= int(self.__Deal * 1.2)
+            elif target.__Type == 'Grass':
                 print("Not very effective...")
-                target.Hp -= int(self.Deal / 1.2)
+                target.__Hp -= int(self.__Deal / 1.2)
             else:
-                target.Hp -= self.Deal
+                target.__Hp -= self.__Deal
 
 # Evolution mixin class
 class Evolution:
     def evol(self, n):
         print(f"Congratulations!Your {self.name}\nevolved into {n}")
         self.name = n
-        self.Hp += 5
-        self.Deal += 2
+        self.hp += 5
+        self.deal += 2
 
 # Starting pokemon classes
 class Pikachu(Pokemon):
@@ -64,17 +95,17 @@ class Pikachu(Pokemon):
         super().__init__('Pikachu', 'Electric', 30, 71, 25)
 class Turtwig(Pokemon, Evolution):
     def __init__(self):
-        super().__init__('Turtwig', 'Grass', 10, 23, 11)
+        super().__init__('Turtwig', 'Grass', 10, 27, 9)
 class Chimchar(Pokemon, Evolution):
     def __init__(self):
-        super().__init__('Chimchar', 'Fire', 10, 23, 11)
+        super().__init__('Chimchar', 'Fire', 10, 27, 9)
 class Piplup(Pokemon, Evolution):
     def __init__(self):
-        super().__init__('Piplup', 'Water', 10, 23, 11)
+        super().__init__('Piplup', 'Water', 10, 27, 9)
 
 # My Func
 def isAdvanced(a, b) -> bool:
-    if a.type == 'Electric' or a.type == 'Psychic':
+    if a.type == 'Electric' and (b.type != 'Psychic' or b.type != 'Dragon'):
         return True
     if a.type == 'Grass' and b.type == 'Water':
         return True
@@ -84,13 +115,13 @@ def isAdvanced(a, b) -> bool:
         return True
     return False
 def isEvolution(a, b) -> bool:
-    if a.Lv >= b:
+    if a.lv >= b:
         return True
     return False
 
 # main
-Wild = ['Bidoof', 'Eevee', 'Magikarp', 'Squirtle', 'Ponyta', 'Roselia', 'Charmeleon', 'Gyarados', 'Torterra', 'Mewtwo']
-w_Type = ['Normal', 'Normal', 'Water', 'Water', 'Fire', 'Grass', 'Fire', 'Water', 'Grass', 'Psychic']
+Wild = ['Bidoof', 'Eevee', 'Magikarp', 'Squirtle', 'Ponyta', 'Roselia', 'Charmeleon', 'Gyarados', 'Torterra', 'Mewtwo', 'Dialga', 'Palkia']
+w_Type = ['Normal', 'Normal', 'Water', 'Water', 'Fire', 'Grass', 'Fire', 'Water', 'Grass', 'Psychic', 'Dragon', 'Dragon']
 p1 = Pikachu(); p2 = Turtwig(); p3 = Chimchar(); p4 = Piplup();
 Starting = [p1, p2, p3, p4]
 
@@ -132,77 +163,77 @@ while True:
 
     # In Game
     try:
-        if MyPokemon.Lv >= 100:
+        if MyPokemon.lv >= 100:
             raise Clear
 
         # set Wild_Pokemon
-        if MyPokemon.Lv <= 20:
+        if MyPokemon.lv <= 20:
             WildNum = random.randint(0, 4)
-        elif MyPokemon.Lv <= 50:
+        elif MyPokemon.lv <= 50:
             WildNum = random.randint(5, 8)
-        elif MyPokemon.Lv <= 80:
+        elif MyPokemon.lv <= 80:
             WildNum = random.randint(7, 8)
         else:
-            WildNum = random.randint(7, 9)
+            WildNum = random.randint(7, 11)
 
-        if MyPokemon.Lv <= 30:
-            WildLv = random.randint(MyPokemon.Lv - 5, MyPokemon.Lv + 3)
-        elif MyPokemon.Lv <= 70:
-            WildLv = random.randint(MyPokemon.Lv - 3, MyPokemon.Lv + 7)
-        elif MyPokemon.Lv <= 93:
-            WildLv = random.randint(MyPokemon.Lv, MyPokemon.Lv + 7)
+        if MyPokemon.lv <= 30:
+            WildLv = random.randint(MyPokemon.lv - 5, MyPokemon.lv + 3)
+        elif MyPokemon.lv <= 70:
+            WildLv = random.randint(MyPokemon.lv - 3, MyPokemon.lv + 7)
+        elif MyPokemon.lv <= 93:
+            WildLv = random.randint(MyPokemon.lv, MyPokemon.lv + 7)
         else:
             WildLv = 100
 
-        WP = Pokemon(Wild[WildNum], w_Type[WildNum], WildLv, int(WildLv * 1.6) + 3, int(WildLv * 0.7) - 1)
-        if WildNum == 9 and WildLv <= 90:
-            WildLv += 5; WP.Hp += 8; WP.Deal += 10;
-        print(f"Wild Pokemon {WP.name}(Lv.{WP.Lv}) is appeared!")
+        WildPokemon = Pokemon(Wild[WildNum], w_Type[WildNum], WildLv, int(WildLv * 1.5) + 3, int(WildLv * 0.7))
+        if WildNum == 9 or WildNum == 10 or WildNum == 11 and WildLv <= 90:
+            WildLv += 5; WildPokemon.hp += 8; WildPokemon.deal += 10;
+        print(f"Wild Pokemon {WildPokemon.name}(Lv.{WildPokemon.lv}) is appeared!")
 
         # User select
         while True:
             MySelect = int(input(f"What will {MyPokemon.name} do?\n1) Fight   2) Run   3) Info   4) Quit : "))
             if MySelect == 1:
-                MyPokemon.Attack(WP)
-                if WP.Hp <= 0:
-                    reward = int(WP.Lv * 0.05) + 1
-                    MyPokemon.Lv += reward
-                    MyPokemon.Hp += int(reward * 18.5) - 14
-                    MyPokemon.Deal += int(reward * 0.9)
-                    print(f"\n{WP.name} is dead\n{MyPokemon.name} get {reward}exp\n")
+                MyPokemon.Attack(WildPokemon)
+                if WildPokemon.hp <= 0:
+                    reward = int(WildPokemon.lv * 0.05) + 1
+                    MyPokemon.lv += reward
+                    MyPokemon.hp += int(reward * 18.5) - 13
+                    MyPokemon.deal += int(reward * 0.9) + 0.5
+                    print(f"\n{WildPokemon.name} is dead\n{MyPokemon.name} get {reward}exp\n")
                     break
-                WP.Attack(MyPokemon)
+                WildPokemon.Attack(MyPokemon)
                 print()
-                if MyPokemon.Hp <= 0:
+                if MyPokemon.hp <= 0:
                     raise Die()
 
             elif MySelect == 2:
-                if WP.Lv - MyPokemon.Lv <= 5 or flag:
+                if WildPokemon.lv - MyPokemon.lv <= 5 or flag:
                     print("You got away safely!\n")
                     break
                 else:
                     flag = True
                     print("You couldn't get away!")
-                    WP.Attack(MyPokemon)
+                    WildPokemon.Attack(MyPokemon)
                     print()
-                    if MyPokemon.Hp <= 0:
+                    if MyPokemon.hp <= 0:
                         raise Die()
             elif MySelect == 3:
                 print("Your Pokemon:")
                 MyPokemon.info()
                 print("Wild Pokemon:")
-                WP.info()
-                if isAdvanced(MyPokemon, WP) and WildNum != 9:
+                WildPokemon.info()
+                if isAdvanced(MyPokemon, WildPokemon) and WildNum != 9 and WildNum != 10 and WildNum != 11:
                     print("Your Pokemon has advantaged!")
 
-                if WP.Lv - MyPokemon.Lv <= 5 or flag:
-                    print(f"You can run from {WP.name}\n")
+                if WildPokemon.lv - MyPokemon.lv <= 5 or flag:
+                    print(f"You can run from {WildPokemon.name}\n")
                 else:
-                    print(f"You can't run from {WP.name}\n")
+                    print(f"You can't run from {WildPokemon.name}\n")
             elif MySelect == 4:
                 raise Finish
             else:
-                print("Please select a valid menu")
+                print("Please select a valid menu\n")
 
     # Exception handling
     except Die:
