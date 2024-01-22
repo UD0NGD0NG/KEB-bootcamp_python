@@ -1,25 +1,45 @@
-class Class:
-    name = 'First' # Basic class attribute
-    cnt = 0
-    def __init__(self): # Constructor
-        Class.cnt += 1
-    @classmethod # affects class and all objects
-    def getCount(cls): # parameter must be cls
-        return cls.cnt
-    def __str__(self): # Magic method (operator overloading)
-        return (f"My name is {self.name}")
+class Behavior:
+    def __init__(self, method):
+        self.method = method
+class Skill:
+    def __init__(self, sk):
+        self.sk = sk
+    def use(self):
+        return self.sk
+class Pokemon:
+    def __init__(self, name, tmp):
+        self.name = name
+        self.tmp = tmp
+        self.skill = Skill('Tackle') # Composition
+    def Fly(self):
+        if self.tmp.method == 'Wings':
+            print(f"{self.name} is flying to sky by {self.tmp.method}")
+        else:
+            print(f"{self.name} can't fly")
+    def Swim(self):
+        if self.tmp.method == 'Tails':
+            print(f"{self.name} is swimming to sea by {self.tmp.method}")
+        else:
+            print(f"{self.name} can't swim")
+    def Attack(self):
+        print(f"{self.name} is attacked by {self.skill.use()}")
+class Charizard(Pokemon):
+    pass
+class Gyarados(Pokemon):
+    pass
 
-class_one = Class()
-print(f"class1's name: {class_one.name}")
-class_one.name = 'Change'
-print(f"now class1's name: {class_one.name}") # change object's attribute
-Class.name = "Second" # change class attribute
-class_two = Class()
-print(f"class1's name: {class_one.name}")
-print(f"class2's name: {class_two.name}") # == Changed class attribute
+# Aggregation
+wings = Behavior('Wings')
+tails = Behavior('Tails')
 
-print(Class.cnt)
-print(class_one.cnt)
+p1 = Gyarados("Gyarados", tails)
+p2 = Charizard("Charizard", wings)
 
-print(class_one)
-print(class_two)
+p1.Fly()
+p1.Swim()
+p2.Fly()
+p2.Swim()
+
+
+# Composition
+p1.Attack()
