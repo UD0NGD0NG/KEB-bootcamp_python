@@ -1,45 +1,44 @@
-class Behavior:
-    def __init__(self, method):
-        self.method = method
-class Skill:
-    def __init__(self, sk):
-        self.sk = sk
-    def use(self):
-        return self.sk
-class Pokemon:
-    def __init__(self, name, tmp):
-        self.name = name
-        self.tmp = tmp
-        self.skill = Skill('Tackle') # Composition
-    def Fly(self):
-        if self.tmp.method == 'Wings':
-            print(f"{self.name} is flying to sky by {self.tmp.method}")
+# import MyModule -1
+# from MyModule import * -2
+import MyModule as mm # -3
+
+while True:
+    menu = input("1) Fahrenheit -> Celsius   2) Celsius -> Fahrenheit   3) Prime1   4) Prime2   5) Quit program : ")
+
+    if menu == '1':
+        fahrenheit = float(input('Input Fahrenheit : '))
+        # print(f'Fahrenheit : {fahrenheit}F, Celsius : {MyModule.fahrenheit_to_celsius(fahrenheit):.4f}C\n') -1
+        # print(f'Fahrenheit : {fahrenheit}F, Celsius : {fahrenheit_to_celsius(fahrenheit):.4f}C\n') -2
+        print(f'Fahrenheit : {fahrenheit}F, Celsius : {mm.fahrenheit_to_celsius(fahrenheit):.4f}C\n') # -3
+    elif menu == '2':
+        celsius = float(input('Input Celsius : '))
+        # print(f'Celsius : {celsius}C, Fahrenheit : {MyModule.celsius_to_fahrenheit(celsius):.4f}F\n') -1
+        # print(f'Celsius : {celsius}C, Fahrenheit : {celsius_to_fahrenheit(celsius):.4f}F\n') -2
+        print(f'Celsius : {celsius}C, Fahrenheit : {mm.celsius_to_fahrenheit(celsius):.4f}F\n') # -3
+    elif menu == '3':
+        number = int(input("Input number : "))
+        # if MyModule.isprime(number): -1
+        # if isprime(number): -2
+        if mm.isprime(number): # -3
+            print(f'{number} is prime number\n')
         else:
-            print(f"{self.name} can't fly")
-    def Swim(self):
-        if self.tmp.method == 'Tails':
-            print(f"{self.name} is swimming to sea by {self.tmp.method}")
-        else:
-            print(f"{self.name} can't swim")
-    def Attack(self):
-        print(f"{self.name} is attacked by {self.skill.use()}")
-class Charizard(Pokemon):
-    pass
-class Gyarados(Pokemon):
-    pass
+            print(f'{number} is NOT prime number!\n')
+    elif menu == '4':
+        numbers = input("Input first second number : ").split()
+        n1 = int(numbers[0])
+        n2 = int(numbers[1])
 
-# Aggregation
-wings = Behavior('Wings')
-tails = Behavior('Tails')
+        if n1 > n2:
+            n1, n2 = n2, n1
 
-p1 = Gyarados("Gyarados", tails)
-p2 = Charizard("Charizard", wings)
-
-p1.Fly()
-p1.Swim()
-p2.Fly()
-p2.Swim()
-
-
-# Composition
-p1.Attack()
+        for number in range(n1, n2 + 1):
+            # if MyModule.isprime(number): -1
+            # if isprime(number): -2
+            if mm.isprime(number): # -3
+                print(number, end=' ')
+        print('\n')
+    elif menu == '5':
+        print('Terminate Program.\n')
+        break
+    else:
+        print('Invalid Menu!\n')
